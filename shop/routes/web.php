@@ -17,10 +17,31 @@ Route::get('/', function () {
 });
 
 
+Route::resource('itemCRUD','ItemCRUDController');
+
 
 
 Route::resource('FilmCRUD','FilmCRUDController');
 
+Route::resource('adminCRUD','AdminCRUDController');
 
 Route::resource('newFilmsCRUD','newFilmController');
+
+
+Route::resource('adminNewFilms','adminNewFilmsController');
+
+Route::resource('loginAdmin','loginController');
+
+
+Route::get('http://localhost/shop/public/FilmCRUD/', [
+  'as' => 'reviewFilm', 
+  'uses' => 'Auth\FilmCRUDController@show'
+]);
+
+
+Route::get('http://localhost/shop/public/newFilmsCRUD/', [
+  'as' => 'email', 
+  'uses' => 'Auth\newFilmController@index'
+]);
+
 
