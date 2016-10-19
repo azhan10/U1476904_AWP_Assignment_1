@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\Frs_film;
 
+use App\filmreview;
 
 use DB;
 
@@ -57,6 +58,10 @@ class FilmCRUDController extends Controller
             'description' => 'required',
             'review' => 'required',
         ]);
+
+         $FilmID = $request->film_id;
+
+        // echo $FilmID;
          
          filmreview::create($request->all());
 
@@ -82,7 +87,9 @@ class FilmCRUDController extends Controller
 
       $filmReviews = DB::select('select * from filmreviews where film_id = :film_id', ['film_id' => $filmid]);
 
-       return view('FilmCRUD.show',compact('film'))->with('filmReviews', $filmReviews);
+      $film_id = DB::select('select * from frs_films where id = :id', ['id' => $filmid]);
+
+       return view('FilmCRUD.show',compact('film'))->with('filmReviews', $filmReviews)->with('film_id', $film_id);
 
     }
 
