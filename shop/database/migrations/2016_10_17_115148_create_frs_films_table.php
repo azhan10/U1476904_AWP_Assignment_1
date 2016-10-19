@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateFrsFilmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('logins', function (Blueprint $table) {
+        //
+        Schema::create('films', function (Blueprint $table) {
 
             $table->increments('id');
 
-            $table->string('username');
+            $table->string('filmtitle');
 
-            $table->text('password');
+            $table->text('filmdescription');
+            $table->text('filmdirector');
+            $table->text('filmrating');
+            $table->text('filmstarname');
 
         });
-
-
     }
 
     /**
@@ -33,6 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('logins');
+        //
+        Schema::drop("films");
     }
 }

@@ -17,3 +17,10 @@ Route::get('/', function () {
 });
 
 
+
+
+Route::resource('FilmCRUD','FilmCRUDController');
+
+
+
+
