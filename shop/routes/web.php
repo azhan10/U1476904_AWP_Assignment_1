@@ -22,5 +22,5 @@ Route::get('/', function () {
 Route::resource('FilmCRUD','FilmCRUDController');
 
 
-
+Route::resource('newFilmsCRUD','newFilmController');
 

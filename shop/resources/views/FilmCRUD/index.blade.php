@@ -13,6 +13,18 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-xs-6 text-left">
+            <a class="btn btn-primary" href="{{ route('loginAdmin.index') }}">Admistrator</a>
+        </div>
+        <div class="col-xs-6 text-right">
+            <h4><b>Film description not here? <a class="btn btn-primary" href="{{ route('newFilmsCRUD.index') }}">Inform Me</a></b></h4>
+      
+        </div>
+    </div>
+<hr/>
+<br/>
+
     @foreach ($films as $key => $film)
     <div class="row">
         <div class="col-xs-9">
