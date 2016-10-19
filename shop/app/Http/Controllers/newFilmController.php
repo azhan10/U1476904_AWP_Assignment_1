@@ -50,7 +50,23 @@ class newFilmController extends Controller
 
     {
 
-   
+        $this->validate($request, [
+
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $name = $request->name;
+        $description = $request->description;
+
+        $data = array('name'=> $name,
+            'description' => $description
+            );
+
+        blogs::create($request->all());
+     
+        return redirect()->route('newFilmsCRUD.index')
+                        ->with('success','Item created successfully');
 
     }
 

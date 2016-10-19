@@ -2,8 +2,24 @@
 
 @section('content')
 
-<h3 class="">Please inform me any new films</h3>
+<h3 class="text-center">Please inform me any new films</h3>
 
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <a class="btn btn-info" href="{{ route('FilmCRUD.index') }}">Home Page</a>
 
@@ -42,6 +58,12 @@
     <hr/>
 
 
+    @foreach ($blogs as $key => $item)
+        <h2 class="text-center"><b>{{ $item->name }}</b></h2>
+        <p><b>Description: </b>{{ $item->description }}</p>
+        <hr/>
+
+    @endforeach
 <div class="text-center">
     
     {!! $blogs->render() !!}
