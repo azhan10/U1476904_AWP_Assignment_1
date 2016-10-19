@@ -79,7 +79,27 @@ class AdminCRUDController extends Controller
 
     {
 
- 
+        $this->validate($request, [
+
+            'filmtitle' => 'required',
+            'filmdescription' => 'required',
+            'filmdirector' => 'required',
+            'filmrating' => 'required',
+            'filmstarname' => 'required',
+
+
+        ]);
+
+
+
+
+        Frs_film::create($request->all());
+
+
+
+        return redirect()->route('adminCRUD.index')
+
+                        ->with('success','Item created successfully');
 
     }
 
@@ -127,6 +147,9 @@ class AdminCRUDController extends Controller
 
     {
 
+        $item = Frs_film::find($id);
+
+        return view('adminCRUD.edit',compact('item'));
 
     }
 
@@ -151,6 +174,30 @@ class AdminCRUDController extends Controller
 
     {
 
+        $this->validate($request, [
+
+            'filmdescription' => 'required',
+
+            'filmdirector' => 'required',
+
+            'filmtitle' => 'required',
+
+            'filmrating' => 'required',
+
+            'filmstarname' => 'required',
+
+        ]);
+
+
+
+
+        Frs_film::find($id)->update($request->all());
+
+
+
+        return redirect()->route('adminCRUD.index')
+
+                        ->with('success','Item updated successfully');
 
     }
 
@@ -173,6 +220,11 @@ class AdminCRUDController extends Controller
 
     {
 
+        Frs_film::find($id)->delete();
+
+        return redirect()->route('adminCRUD.index')
+
+                        ->with('success','Item deleted successfully');
 
     }
 

@@ -7,13 +7,42 @@
 
 
 <div id="currentFilms">
-<h2 class="">Film Records</h2>
+<h2 class="text-center">Film Records</h2>
+<hr/>
+<br/>
 
+   @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 
+    @if ($message = Session::get('fail'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 
-    <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
- <a class="btn btn-success" href="{{ route('adminCRUD.create') }}"> Create New Item</a>
-<a class="btn btn-info" href="{{ route('adminNewFilms.index') }}">Customers Films</a>
+    <div class="row">
+        <div class="col-xs-6 text-left">
+            <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
+           
+        </div>
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-success" href="{{ route('adminCRUD.create') }}"> Create New Item</a>
+            
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-6 text-left"></div>
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-info" href="{{ route('adminNewFilms.index') }}">Customers Films</a>
+            
+        </div>
+    </div>
+
+  <br/>
 
 <script type="text/javascript">
     function logout(){
@@ -64,9 +93,9 @@
     @endforeach
 
     </table>
-
+<div class="text-center">
     {!! $items->render() !!}
-
+</div>
 </div>
 
 @endsection
