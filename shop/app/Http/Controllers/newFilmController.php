@@ -66,7 +66,7 @@ class newFilmController extends Controller
         blogs::create($request->all());
      
         return redirect()->route('newFilmsCRUD.index')
-                        ->with('success','Item created successfully');
+                        ->with('success','Film record  created successfully');
 
     }
 

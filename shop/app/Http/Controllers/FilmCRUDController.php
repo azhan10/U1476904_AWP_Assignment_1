@@ -66,7 +66,7 @@ class FilmCRUDController extends Controller
          filmreview::create($request->all());
 
        
-        return redirect()->back()->with('reviewFilm/', [$FilmID])->with('success','Item created successfully');
+        return redirect()->back()->with('reviewFilm/', [$FilmID])->with('success','Film record created successfully');
     }
 
 

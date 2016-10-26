@@ -87,16 +87,7 @@ class adminRentController extends Controller
     public function show($id){
         $rentRecords = customerRents::find($id);
 
-        $date = Carbon::now();
-        $date = new Carbon();
-
-        if($rentRecords->created_at < $date){
-            $flag = 'true';
-        }else{
-            $flag = 'false';
-        }
-
-        return view('adminRents.show',compact('adminRents'))->with('rentRecords', $rentRecords)->with('flag', $flag);
+        return view('adminRents.show',compact('adminRents'))->with('rentRecords', $rentRecords);
 
     }
 
@@ -189,7 +180,7 @@ class adminRentController extends Controller
     {
         customerRents::find($id)->delete();
 
-        return redirect()->route('adminRents.index')->with('success','Item deleted successfully');
+        return redirect()->route('adminRents.index')->with('success','Rented information deleted successfully');
 
     }
 }

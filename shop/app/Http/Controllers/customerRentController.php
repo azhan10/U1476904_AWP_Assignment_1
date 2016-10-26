@@ -62,7 +62,7 @@ class customerRentController extends Controller
          
         customerRents::create($request->all());
 
-        return redirect()->back()->with('returnFromRent/', [$FilmID])->with('success','Your item has been reserved. Please come to the store to get your rent copy.');
+        return redirect()->back()->with('returnFromRent/', [$FilmID])->with('success','Your film has been reserved. Please come to the store to get your rent copy.');
     }
 
 

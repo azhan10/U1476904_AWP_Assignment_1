@@ -165,7 +165,7 @@ class adminNewFilmsController extends Controller
 
         blogs::find($id)->delete();
 
-        return redirect()->route('adminNewFilms.index')->with('success','Blog deleted successfully');
+        return redirect()->route('adminNewFilms.index')->with('success','Film recommendation deleted successfully');
 
     }
 
