@@ -88,7 +88,7 @@
         </div>
 
          <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-         <a class="btn btn-primary" href="{{ route('adminRents.index') }}">Cancel</a>
+         <a class="btn btn-primary" href="{{ route('adminRents.index') }}">Return</a>
                 <button type="submit" class="btn btn-success">Edit</button>
         </div>
 

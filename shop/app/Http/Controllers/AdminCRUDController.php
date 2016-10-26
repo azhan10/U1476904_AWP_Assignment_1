@@ -99,7 +99,7 @@ class AdminCRUDController extends Controller
 
         return redirect()->route('adminCRUD.index')
 
-                        ->with('success','Item created successfully');
+                        ->with('success','Film record created successfully');
 
     }
 
@@ -197,7 +197,7 @@ class AdminCRUDController extends Controller
 
         return redirect()->route('adminCRUD.index')
 
-                        ->with('success','Item updated successfully');
+                        ->with('success','Film record updated successfully');
 
     }
 
@@ -224,7 +224,7 @@ class AdminCRUDController extends Controller
 
         return redirect()->route('adminCRUD.index')
 
-                        ->with('success','Item deleted successfully');
+                        ->with('success','Film record deleted successfully');
 
     }
 
