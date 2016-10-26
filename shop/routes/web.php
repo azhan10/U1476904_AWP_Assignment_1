@@ -32,6 +32,10 @@ Route::resource('adminNewFilms','adminNewFilmsController');
 
 Route::resource('loginAdmin','loginController');
 
+Route::resource('customerRent','customerRentController');
+
+Route::resource('adminRents','adminRentController');
+
 
 Route::get('http://localhost/shop/public/FilmCRUD/', [
   'as' => 'reviewFilm', 
@@ -39,9 +43,10 @@ Route::get('http://localhost/shop/public/FilmCRUD/', [
 ]);
 
 
-Route::get('http://localhost/shop/public/newFilmsCRUD/', [
-  'as' => 'email', 
-  'uses' => 'Auth\newFilmController@index'
-]);
+
+
+
+
+
 
 

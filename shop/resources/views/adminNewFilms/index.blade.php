@@ -5,13 +5,6 @@
 <h3 class="text-center">Film recommendations</h3>
 <hr/>
 
-<script type="text/javascript">
-    function logout(){
-         $(document).ready(function(){
-                window.location.replace("FilmCRUD");
-            });
-    }
-</script>
 
 <div class="text-center">
     <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>

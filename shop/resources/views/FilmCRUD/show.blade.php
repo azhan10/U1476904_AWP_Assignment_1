@@ -9,7 +9,7 @@
 <h2 class="text-center">Film Details</h2>
 <hr/>
 
-<a class="btn btn-info" href="{{ route('FilmCRUD.index') }}"> Back</a>
+<a class="btn btn-info" href="{{ route('FilmCRUD.index') }}">Go Back</a>
 <br/>
 <br/>
 
@@ -67,6 +67,11 @@
 
     </div>
 
+@foreach ($film_id as $key => $film)
+<div class="text-center">
+    <a class="btn btn-primary" href="{{ route('customerRent.show', $film->id ) }}">Rent this movie</a>
+</div>
+@endforeach
 
     <hr/>
     <h2 class="text-center">Reviews</h2><br/>
@@ -160,8 +165,6 @@
     <hr/>
 
 @endforeach
-
-
 
 
 @endsection
