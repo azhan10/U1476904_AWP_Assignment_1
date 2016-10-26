@@ -29,7 +29,13 @@
 
 <body>
 
- 
+ <script type="text/javascript">
+    function logout(){
+         $(document).ready(function(){
+                window.location.replace("FilmCRUD");
+            });
+    }
+</script>
 
 
 <div class="container">

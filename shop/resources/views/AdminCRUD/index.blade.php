@@ -35,7 +35,9 @@
     </div>
     <br/>
     <div class="row">
-        <div class="col-xs-6 text-left"></div>
+        <div class="col-xs-6 text-left">
+            <a class="btn btn-info" href="{{ route('adminRents.index') }}">Rent Orders</a>
+        </div>
         <div class="col-xs-6 text-right">
             <a class="btn btn-info" href="{{ route('adminNewFilms.index') }}">Customers Films</a>
             
