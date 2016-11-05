@@ -12,4 +12,4 @@ Please note for Windows users. Here is the installation for Window users:
 
 3) Finally type the php artisan key:generate command in the command prompt. The program will run.
 
-P.S. .env has replaced all the variable to their default value. You would have to re-enter the information again.
+P.S. .env has replaced all the variable to their default value. You would have to re-enter the information again. It also contains the database file
