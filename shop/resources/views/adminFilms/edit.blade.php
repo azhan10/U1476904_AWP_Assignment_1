@@ -18,7 +18,7 @@
     @endif
 
 <!--Button is used to return back to index interface-->
-<a class="btn btn-info" href="{{ route('itemCRUD.index') }}"> Back</a>
+<a class="btn btn-info" href="{{ route('adminFilms.index') }}"> Back</a>
 <br/>
 <br/>
 
