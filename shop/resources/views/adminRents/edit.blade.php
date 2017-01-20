@@ -77,9 +77,7 @@
             </div>
         </div>
          <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-           <!--This button is used to return users back to the administrator rental index interface-->
          <a class="btn btn-primary" href="{{ route('adminRents.index') }}">Return</a>
-         <!--Here is the submit button which performs the operation to edit information-->
                 <button type="submit" class="btn btn-success">Edit</button>
         </div>
 </div>

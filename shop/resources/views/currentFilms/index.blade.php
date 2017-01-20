@@ -12,6 +12,11 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+
+
+
+
+
 <!--There are many buttons applied here which perform different events-->
     <div class="row">
         <div class="col-xs-6 text-left">
@@ -20,14 +25,16 @@
         </div>
         <div class="col-xs-6 text-right">
           <!--This button directs users to the inform me interface (index page)-->
-            <h4><b>Film description not here? <a class="btn btn-primary" href="{{ route('newFilmsCRUD.index') }}">Inform Me</a></b></h4>
+            <h4><b>Film description not here? <a class="btn btn-primary" href="{{ route('newFilmRequests.index') }}">Inform Me</a></b></h4>
 
         </div>
     </div>
 <hr/>
 <br/>
+    <h4 class="text-center"> <b>Total Films:</b> {{ $filmCount }}  </h4>
+
 <!--For each film content in the database, display all the information a table format.-->
-    @foreach ($films as $key => $film)
+    @foreach ($curretFilms as $key => $film)
     <div class="row">
         <div class="col-xs-9">
             <h2 class="text-center">{{ $film->filmtitle }}</h2>
@@ -35,14 +42,14 @@
         </div>
         <div class="col-xs-3 text-left">
           <!--The action include the show function.-->
-            <a class="btn btn-info" href="{{ route('FilmCRUD.show',$film->id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('currentFilms.show',$film->id) }}">Show</a>
         </div>
     </div>
         <hr/>
     @endforeach
 
  <div class="text-center">
-    {!! $films->render() !!}
+    {!! $curretFilms->render() !!}
 </div>
 
 @endsection

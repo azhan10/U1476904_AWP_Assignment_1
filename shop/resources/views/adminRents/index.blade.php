@@ -16,7 +16,7 @@
     <div class="col-xs-6 text-left">
     </br>
         <!--This buttons returns users back to the index interface-->
-        <a class="btn btn-info" href="{{ route('adminCRUD.index') }}">Home</a>
+        <a class="btn btn-info" href="{{ route('adminFilms.index') }}">Home</a>
         <!--This buttons logs the user out-->
         <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
     </div>
@@ -26,6 +26,10 @@
 </div>
 <hr/>
 </br>
+
+<h4 class="text-center">
+  <b>Total Rental Orders:</b>  {{ $rentalOrderCount }}
+</h4>
 
 <!--The table is used to view all current films information
     The include many action such as editing existing information-->

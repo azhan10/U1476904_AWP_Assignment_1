@@ -8,9 +8,33 @@
 <hr/>
 
 <!--Button is used to return back to index interface-->
-<a class="btn btn-info" href="{{ route('FilmCRUD.index') }}">Go Back</a>
+<a class="btn btn-info" href="{{ route('currentFilms.index') }}">Go Back</a>
 <br/>
 <br/>
+
+<!--This is used for displaying any sort of message-->
+@if ($message = Session::get('fail'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+<!--This is used for displaying any sort of message-->
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+<!--This is used for displaying any sort of message-->
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 <!--The information is used to view all information of an film using the id.
     the content that will be shown is the film title, film director, film rating, film star name, and film description-->
@@ -18,35 +42,35 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Film title:</strong>
-                {{ $film->filmtitle }}
+                {{ $showFilmInformation->filmtitle }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Film director:</strong>
-                {{ $film->filmdirector }}
+                {{ $showFilmInformation->filmdirector }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Film rating:</strong>
-                {{ $film->filmrating }}
+                {{ $showFilmInformation->filmrating }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Film star name:</strong>
-                {{ $film->filmstarname }}
+                {{ $showFilmInformation->filmstarname }}
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Film description:</strong>
-                {{ $film->filmdescription }}
+                {{ $showFilmInformation->filmdescription }}
             </div>
         </div>
     </div>
@@ -59,13 +83,18 @@
 @endforeach
 
     <hr/>
-    <h2 class="text-center">Reviews</h2><br/>
+    <h2 class="text-center">Reviews</h2>
+    <h4 class="text-center">
+      <b>Total Reviews:</b> {{ $reviewCount }}
+      <b>Average Rating: </b> {{ number_format($reviewAverage,1) }}
+    </h4>
+     <br/>
     <!--Here is the form which allows adminstrators to insert new data to the database.
         I embedded the Form class to my laravel project.
         The form includes 3 contents; film title, film description and film review.
         It also includes a button which activates the opertion to add the current data to the database (using the controller and model)
     -->
-    {!! Form::open(array('route' => 'FilmCRUD.store','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'currentFilms.store','method'=>'POST')) !!}
     <div class="row">
         <div style="display:none;" class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

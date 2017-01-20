@@ -11,6 +11,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Frs_film extends Model
 {
-    //Getting all required information to perform the interaction
     public $fillable = ['filmtitle','filmdescription', 'filmdirector', 'filmrating', 'filmstarname'];
 }

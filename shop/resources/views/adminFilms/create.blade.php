@@ -20,7 +20,7 @@
     @endif
 
 <!--Button is used to return back to index interface-->
-<a class="btn btn-info" href="{{ route('adminCRUD.index') }}"> Back</a>
+<a class="btn btn-info" href="{{ route('adminFilms.index') }}"> Back</a>
 
 <br/>
 <br/>
@@ -30,7 +30,7 @@
     The form includes 5 contents; film title, film description, film director, film rating and film star name.
     It also includes a button which activates the opertion to add the current data to the database (using the controller and model)
 -->
-    {!! Form::open(array('route' => 'adminCRUD.store','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'adminFilms.store','method'=>'POST')) !!}
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -69,7 +69,6 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <!--Here is the submit button which performs the operation to add new content to the database-->
         <button type="submit" class="btn btn-success">Submit</button>
         </div>
     </div>

@@ -26,10 +26,8 @@ class adminNewFilmsController extends Controller
      */
     public function index(Request $request)
     {
-      //The code below is used to subdivde the messages to pages (13 per page).
-        $blogs = blogs::orderBy('id','DESC')->paginate(13);
-        //Display the index interface with the messages in the pagnated format
-        return view('adminNewFilms.index',compact('blogs'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $newFilmRequests = blogs::orderBy('id','DESC')->paginate(13);
+        return view('adminNewFilms.index',compact('newFilmRequests'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
 
@@ -69,10 +67,8 @@ class adminNewFilmsController extends Controller
      */
     public function show($id)
     {
-       //Get the selected id
-        $blogs = blogs::find($id);
-        //Display the information on the show interface.
-        return view('adminNewFilms.show',compact('blogs'));
+        $newFilmRequests = blogs::find($id);
+        return view('adminNewFilms.show',compact('newFilmRequests'));
     }
 
 
@@ -117,9 +113,7 @@ class adminNewFilmsController extends Controller
      */
     public function destroy($id)
     {
-      //Get id and delete the information
-        blogs::find($id)->delete();
-      //Direct the user to the index page and display a notification that the delete has been sucessfull
+      blogs::find($id)->delete();
       return redirect()->route('adminNewFilms.index')->with('success','Film recommendation deleted successfully');
     }
 

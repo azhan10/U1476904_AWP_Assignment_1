@@ -28,7 +28,7 @@
         </div>
         <div class="col-xs-6 text-right">
           <!--This buttons directs the administrator to the create interface-->
-            <a class="btn btn-success" href="{{ route('adminCRUD.create') }}"> Create New Item</a>
+            <a class="btn btn-success" href="{{ route('adminFilms.create') }}"> Create New Item</a>
         </div>
     </div>
     <br/>
@@ -50,10 +50,16 @@
 <script type="text/javascript">
     function logout(){
          $(document).ready(function(){
-                window.location.replace("FilmCRUD");
+                window.location.replace("currentFilms");
             });
     }
 </script>
+
+
+<h3>
+  <b>Total Films:</b> {{ $filmCount }}
+</h3>
+
 
 <!--The table is used to view all current films information
     The include many action such as editing existing information-->
@@ -67,17 +73,17 @@
             <th width="280px">Action</th>
         </tr>
 <!--For each film content in the database, display all the information a table format.-->
-    @foreach ($items as $key => $item)
+    @foreach ($films as $key => $film)
     <tr>
-        <td>{{ $item->filmtitle }}</td>
-        <td>{{ $item->filmdescription }}</td>
-        <td>{{ $item->filmdirector }}</td>
-        <td>{{ $item->filmrating }}</td>
-        <td>{{ $item->filmstarname }}</td>
+        <td>{{ $film->filmtitle }}</td>
+        <td>{{ $film->filmdescription }}</td>
+        <td>{{ $film->filmdirector }}</td>
+        <td>{{ $film->filmrating }}</td>
+        <td>{{ $film->filmstarname }}</td>
         <td>
           <!--The action include edit and delete functions.-->
-            <a class="btn btn-primary" href="{{ route('adminCRUD.edit',$item->id) }}">Edit</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['adminCRUD.destroy', $item->id],'style'=>'display:inline']) !!}
+            <a class="btn btn-primary" href="{{ route('adminFilms.edit',$film->id) }}">Edit</a>
+            {!! Form::open(['method' => 'DELETE','route' => ['adminFilms.destroy', $film->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         </td>
@@ -85,7 +91,7 @@
     @endforeach
     </table>
 <div class="text-center">
-    {!! $items->render() !!}
+    {!! $films->render() !!}
 </div>
 </div>
 

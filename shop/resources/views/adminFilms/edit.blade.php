@@ -27,7 +27,7 @@
     The form includes 5 contents; film title, film description, film director, film rating and film star name.
     It also includes a button which activates the opertion to updates the current data to the database (using the controller and model)
 -->
-    {!! Form::model($item, ['method' => 'PATCH','route' => ['adminCRUD.update', $item->id]]) !!}
+    {!! Form::model($editFilmInformation, ['method' => 'PATCH','route' => ['adminFilms.update', $editFilmInformation->id]]) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -65,7 +65,6 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <!--Here is the submit button which performs the operation to edit information-->
                 <button type="submit" class="btn btn-success">Edit</button>
         </div>
     </div>

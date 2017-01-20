@@ -11,6 +11,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class rentFilms extends Model
 {
-    //Getting all required information to perform the interaction
      public $fillable = ['username','address', 'filmtitle'];
 }

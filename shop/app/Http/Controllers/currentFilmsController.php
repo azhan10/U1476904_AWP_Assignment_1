@@ -12,15 +12,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-//The controller require two models; one model displays the films
-//The other model is used to do database interactions with the film review table
 use App\Frs_film;
 use App\filmreview;
-//I added this library to the controller.
-//The library allows raw queries to be executed in the controller.
+
 use DB;
 
-class FilmCRUDController extends Controller
+class currentFilmsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,8 +25,10 @@ class FilmCRUDController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        $films = Frs_film::orderBy('id','ASC')->paginate(13);
-        return view('FilmCRUD.index',compact('films'))->with('i', ($request->input('page', 1) - 1) * 5);
+      //I'm getting the total number of current films (using count() function)
+        $filmCount = DB::table('frs_films')->count();
+        $curretFilms = Frs_film::orderBy('id','ASC')->paginate(13);
+        return view('currentFilms.index',compact('curretFilms'))->with('i', ($request->input('page', 1) - 1) * 5)->with('filmCount', $filmCount);
     }
 
     /**
@@ -39,10 +38,8 @@ class FilmCRUDController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-       //Get the current film id
        $id = DB::select('select * from frs_films');
-       //Direct to the create interface with this film id.
-       return view('FilmCRUD.create',compact('films'))->with('id', $id);
+       return view('currentFilms.create',compact('films'))->with('id', $id);
     }
 
     /**
@@ -53,19 +50,15 @@ class FilmCRUDController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-      //Validation is used to avoid blank inputs
        $this->validate($request, [
             'film_id' => 'required',
             'filmtitle' => 'required',
             'description' => 'required',
             'review' => 'required',
         ]);
-        //Get the film id
          $FilmID = $request->film_id;
-         //Store the information to the database
          filmreview::create($request->all());
-        //Direct the user to the same interface
-        return redirect()->back()->with('reviewFilm/', [$FilmID])->with('success','Film record created successfully');
+        return redirect()->back()->with('reviewFilm/', [$FilmID])->with('success','New review is added.');
     }
 
     /**
@@ -77,13 +70,16 @@ class FilmCRUDController extends Controller
      */
     public function show($filmid)
     {
-      //Get the film id
-      $film = Frs_film::find($filmid);
-      //Do raw quries to retrieve all current film reviews and film information (using the film id).
+      $showFilmInformation = Frs_film::find($filmid);
       $filmReviews = DB::select('select * from filmreviews where film_id = :film_id', ['film_id' => $filmid]);
       $film_id = DB::select('select * from frs_films where id = :id', ['id' => $filmid]);
-      //The code below returns the user to the same interface with the film information and reviews.
-      return view('FilmCRUD.show',compact('film'))->with('filmReviews', $filmReviews)->with('film_id', $film_id);
+
+      //I'm getting the total number of reviews (using count() function)
+      $reviewCount = DB::table('filmreviews')->where('film_id', $filmid)->count();
+      //I'm getting the average number of film reviews(using avg() function)
+      $reviewAverage = DB::table('filmreviews')->where('film_id', $filmid)->avg('review');
+
+      return view('currentFilms.show',compact('showFilmInformation'))->with('filmReviews', $filmReviews)->with('film_id', $film_id)->with('reviewCount', $reviewCount)->with('reviewAverage', $reviewAverage);
     }
 
     /**

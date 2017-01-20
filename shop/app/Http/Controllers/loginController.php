@@ -37,7 +37,6 @@ class loginController extends Controller
     */
     public function store(Request $request)
     {
-      //Validation is used to avoid blank inputs
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
@@ -45,19 +44,15 @@ class loginController extends Controller
 
        // login::create($request->all());
 
-       //Get the inputted username and password
         $username = $request->input('username');
         $password = $request->input('password');
-        //Perform a query to check if inputted data is correct.
-        $result = DB::select('select * from login where username = :username AND password = :password', ['username' => $username, 'password'=> $password]);
-        //The condition is applied which depends on the details inserted.
-        if($result == null){
-          //Return fail message if the details does not match
+        $checkInformation = DB::select('select * from login where username = :username AND password = :password', ['username' => $username, 'password'=> $password]);
+        //Check if information is true or false
+        if($checkInformation == null){
         	return redirect()->route('loginAdmin.index')
                         ->with('fail','Login wrong');
         }else{
-          //Return successfull if the details exists.
-        	return redirect()->route('adminCRUD.index')
+        	return redirect()->route('adminFilms.index')
                         ->with('success','Account granted');
         }
     }

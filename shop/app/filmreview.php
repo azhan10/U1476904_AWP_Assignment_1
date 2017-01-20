@@ -11,6 +11,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class filmreview extends Model
 {
-    //Getting all required information to perform the interaction
     public $fillable = ['id','filmtitle', 'description', 'review', 'film_id'];
 }

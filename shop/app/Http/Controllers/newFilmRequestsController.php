@@ -14,14 +14,10 @@ use App\Http\Requests;
 
 use App\blogs;
 
-//use Mail;
-
-//I added this library to the controller.
-//The library allows raw queries to be executed in the controller.
 use DB;
 
 
-class newFilmController extends Controller
+class newFilmRequestsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,10 +26,8 @@ class newFilmController extends Controller
      */
     public function index(Request $request)
     {
-      //Get all the blogs and subdivide the information into pages (13 messages per page)
-        $blogs = blogs::orderBy('id','DESC')->paginate(13);
-        //Display the structure in the index interface
-        return view('newFilmsCRUD.index',compact('blogs'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $currentFilmRequests = blogs::orderBy('id','DESC')->paginate(13);
+        return view('newFilmRequests.index',compact('currentFilmRequests'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -53,22 +47,18 @@ class newFilmController extends Controller
      */
     public function store(Request $request)
     {
-      //The validation is used to avoid blank inputs
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
         ]);
-        //Get the name, description from the interface.
         $name = $request->name;
         $description = $request->description;
-        //Structure it in a array
         $data = array('name'=> $name,
             'description' => $description
             );
-            //Add the new data to the database
+            //Create information to the 'blogs' database table
         blogs::create($request->all());
-        //Finally direct the user back to film index interface with a message stating that new film is recorded.
-        return redirect()->route('newFilmsCRUD.index')
+        return redirect()->route('newFilmRequests.index')
                         ->with('success','Film record  created successfully');
     }
 
