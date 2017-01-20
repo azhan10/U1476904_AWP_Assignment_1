@@ -31,8 +31,11 @@ class adminRentController extends Controller
     public function index(Request $request){
 
         $adminRents = customerRents::orderBy('id','DESC')->paginate(13);
+        //This is a additional database operation
+        //I'm getting the total number of rental orders (using count() function)
+        $rentalOrderCount = DB::table('customer_rents')->count();
 
-        return view('adminRents.index',compact('adminRents'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('adminRents.index',compact('adminRents'))->with('i', ($request->input('page', 1) - 1) * 5)->with('rentalOrderCount',$rentalOrderCount);
     }
 
     /**
@@ -63,9 +66,7 @@ class adminRentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-      //Get the rental id
         $rentRecords = customerRents::find($id);
-        //Display the rental information on the show interface
         return view('adminRents.show',compact('adminRents'))->with('rentRecords', $rentRecords);
     }
 
@@ -78,10 +79,7 @@ class adminRentController extends Controller
      */
     public function edit($id)
     {
-      //Get the rental id
         $currentRents = customerRents::find($id);
-        //Display current information in the database to the interface.
-        //User can then start editing information.
         return view('adminRents.edit',compact('currentRents'));
 
     }
@@ -97,7 +95,6 @@ class adminRentController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //Validation code to avoid blank inputs
         $this->validate($request, [
             'filmtitle' => 'required',
             'customer_name' => 'required',
@@ -105,9 +102,8 @@ class adminRentController extends Controller
             'status' => 'required',
             'duration' => 'required',
         ]);
-        //Get the current id and update the information
+        //Update information
         customerRents::find($id)->update($request->all());
-        //If update is successfull, it direct the user back to the index with a notification that the update was sucessfull
         return redirect()->route('adminRents.index')->with('success','Rented information updated successfully');
     }
 
@@ -119,9 +115,7 @@ class adminRentController extends Controller
      */
     public function destroy($id)
     {
-      //Get the current id and find it in the database
         customerRents::find($id)->delete();
-        //Once completed, it will direct the user to the index interface with a messages stating the delete was sucessfull.
         return redirect()->route('adminRents.index')->with('success','Rented information deleted successfully');
     }
 }

@@ -11,9 +11,9 @@
   <!--This buttons logs the user out-->
     <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
     <!--This buttons directs the user to the administrator film index interface-->
-    <a class="btn btn-primary" href="{{ route('adminCRUD.index') }}">Back</a>
+    <a class="btn btn-primary" href="{{ route('adminFilms.index') }}">Back</a>
     <!--This buttons directs the user to the film index interface-->
-    <a class="btn btn-primary" href="{{ route('FilmCRUD.index') }}">Home Page</a>
+    <a class="btn btn-primary" href="{{ route('currentFilms.index') }}">Film Page</a>
 </div>
 
 <!--This is used for displaying any sort of error-->
@@ -53,20 +53,20 @@
 
     <hr/>
 <!--For each film content in the database, display all the information a table format.-->
-    @foreach ($blogs as $key => $item)
+    @foreach ($newFilmRequests as $key => $filmRequest)
         <div class="row">
         <div class="col-xs-3">
-            <p>{{ $item->name }}</p>
+            <p>{{ $filmRequest->name }}</p>
         </div>
         <div class="col-xs-3">
-            <p>{{ $item->description }}</p>
+            <p>{{ $filmRequest->description }}</p>
         </div>
         <div class="col-xs-3">
-            <p>{{ $item->created_at }}</p>
+            <p>{{ $filmRequest->created_at }}</p>
         </div>
         <div class="col-xs-3 text-center">
           <!--The action include the delete function.-->
-            {!! Form::open(['method' => 'DELETE','route' => ['adminNewFilms.destroy', $item->id],'style'=>'display:inline']) !!}
+            {!! Form::open(['method' => 'DELETE','route' => ['adminNewFilms.destroy', $filmRequest->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         </div>
@@ -74,6 +74,6 @@
     <hr/>
     @endforeach
 <div class="text-center">
-    {!! $blogs->render() !!}
+    {!! $newFilmRequests->render() !!}
 </div>
 @endsection

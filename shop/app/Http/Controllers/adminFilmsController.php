@@ -12,29 +12,28 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Frs_film;
-//I added this library to the controller.
-//The library allows raw queries to be executed in the controller.
+
 use DB;
 
-class AdminCRUDController extends Controller
+class adminFilmsController extends Controller
 {
     /**
      * Display a listing of the resource.
      * The funtion below is used to display all films stored in the MySQL database.
      * Also subdivide the films into 13 films per page.
+     * It also returns the number of films that are stored in the database
      * @return \Illuminate\Http\Response
      */
 
     public function index(Request $request)
     {
-      //SQL query to get all current films
-    	$results = DB::select('select * from frs_films');
-      //subdivide the films into pages (13 per page).
-        $items = Frs_film::orderBy('id','DESC')->paginate(13);
-
-      //Display film to index webpage
-      return view('adminCRUD.index',compact('items'))
-            ->with('i', ($request->input('page', 1) - 1) * 5)->with('filmsTitle', $results);
+      //Get all current films from the database
+    	$getAllFilms = DB::select('select * from frs_films');
+      $films = Frs_film::orderBy('id','DESC')->paginate(13);
+      //I'm getting the total number of films (using count() function)
+      $filmCount = DB::table('frs_films')->count();
+      return view('adminFilms.index',compact('films'))
+            ->with('i', ($request->input('page', 1) - 1) * 5)->with('filmsTitle', $getAllFilms)->with('filmCount', $filmCount);
     }
 
 
@@ -45,8 +44,7 @@ class AdminCRUDController extends Controller
      */
     public function create()
     {
-      //Display the create webpage view.
-      return view('adminCRUD.create');
+      return view('adminFilms.create');
     }
 
     /**
@@ -58,7 +56,6 @@ class AdminCRUDController extends Controller
      */
     public function store(Request $request)
     {
-        //Avoiding blank information
         $this->validate($request, [
             'filmtitle' => 'required',
             'filmdescription' => 'required',
@@ -67,11 +64,10 @@ class AdminCRUDController extends Controller
             'filmstarname' => 'required',
         ]);
 
-        //Add current data to MySQL database
+        //Create new row in the database
         Frs_film::create($request->all());
 
-        //Direct the user to index webpage.
-        return redirect()->route('adminCRUD.index')
+        return redirect()->route('adminFilms.index')
                         ->with('success','Film record created successfully');
     }
 
@@ -84,10 +80,8 @@ class AdminCRUDController extends Controller
      */
     public function show($id)
     {
-      //Get current selected film id
-        $item = Frs_film::find($id);
-        //Using the id, show all the information stored in the database to the interface
-        return view('adminCRUD.show',compact('item'));
+        $moreFilmInformation = Frs_film::find($id);
+        return view('adminFilms.show',compact('moreFilmInformation'));
     }
 
     /**
@@ -98,11 +92,8 @@ class AdminCRUDController extends Controller
      */
     public function edit($id)
     {
-        //Get current film id.
-        $item = Frs_film::find($id);
-
-        //Diaplay the edit interface
-        return view('adminCRUD.edit',compact('item'));
+        $editFilmInformation = Frs_film::find($id);
+        return view('adminFilms.edit',compact('editFilmInformation'));
     }
 
     /**
@@ -117,7 +108,6 @@ class AdminCRUDController extends Controller
      */
     public function update(Request $request, $id)
     {
-      //Here is the validation to avoid blank inputs
         $this->validate($request, [
             'filmdescription' => 'required',
             'filmdirector' => 'required',
@@ -126,11 +116,9 @@ class AdminCRUDController extends Controller
             'filmstarname' => 'required',
         ]);
 
-        //Update the film id information using the inputted data
+        //Update information
         Frs_film::find($id)->update($request->all());
-        //Direct users to administrator index page.
-        //It will also display a message that it was updated.
-        return redirect()->route('adminCRUD.index')
+        return redirect()->route('adminFilms.index')
                         ->with('success','Film record updated successfully');
     }
 
@@ -143,11 +131,8 @@ class AdminCRUDController extends Controller
      */
     public function destroy($id)
     {
-      //Delete selected film information (using a button).
         Frs_film::find($id)->delete();
-        //Direct users back to index page with a message.
-        //The message confirms the delete operation was completed.
-        return redirect()->route('adminCRUD.index')
+        return redirect()->route('adminFilms.index')
                         ->with('success','Film record deleted successfully');
     }
 

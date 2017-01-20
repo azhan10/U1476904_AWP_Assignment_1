@@ -6,7 +6,7 @@
 <h2 class="text-center">Administrator login</h2>
 <br/>
 
-<a class="btn btn-primary" href="{{ route('FilmCRUD.index') }}">Home Page</a>
+<a class="btn btn-primary" href="{{ route('currentFilms.index') }}">Home Page</a>
 
 <!--This is used for displaying any sort of message-->
 @if ($message = Session::get('fail'))

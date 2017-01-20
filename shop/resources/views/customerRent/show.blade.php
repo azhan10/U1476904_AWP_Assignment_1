@@ -131,7 +131,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
           <!--This button is used to return users back to the customer rent index interface-->
-        <a id="returnHome" class="btn btn-info" href="{{ route('FilmCRUD.index',$film->id) }}">Go Back</a>
+        <a id="returnHome" class="btn btn-info" href="{{ route('currentFilms.index',$film->id) }}">Go Back</a>
         <!--Here is the submit button which performs the operation to add new information-->
         <button type="submit" class="btn btn-success">Submit</button>
         </div>

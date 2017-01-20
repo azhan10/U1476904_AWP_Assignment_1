@@ -16,7 +16,7 @@
   <div class="panel-body text-center">
 
   <h1>Welcome to film review</h1>
-<a class="btn btn-info" href="{{ route('FilmCRUD.index') }}">View current films</a>
+<a class="btn btn-info" href="{{ route('currentFilms.index') }}">View current films</a>
 
   </div>
 </div>
@@ -25,4 +25,3 @@
 
 
 @endsection
-

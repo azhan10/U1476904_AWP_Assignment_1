@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 //The following links the view directories to the right controller file.
 Route::resource('itemCRUD','ItemCRUDController');
-Route::resource('FilmCRUD','FilmCRUDController');
-Route::resource('adminCRUD','AdminCRUDController');
-Route::resource('newFilmsCRUD','newFilmController');
+Route::resource('currentFilms','currentFilmsController');
+Route::resource('adminFilms','adminFilmsController');
+Route::resource('newFilmRequests','newFilmRequestsController');
 Route::resource('adminNewFilms','adminNewFilmsController');
 Route::resource('loginAdmin','loginController');
 Route::resource('customerRent','customerRentController');

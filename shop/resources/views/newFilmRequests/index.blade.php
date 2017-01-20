@@ -25,12 +25,12 @@
     @endif
 
 <!--Button is used to direct users to the index page of the FilmCRUD folder-->
-<a class="btn btn-info" href="{{ route('FilmCRUD.index') }}">Home Page</a>
+<a class="btn btn-info" href="{{ route('currentFilms.index') }}">Home Page</a>
 
 <br/>
 <br/>
 <!--The form below is used to inform the administrator for new film requests.-->
-    {!! Form::open(array('route' => 'newFilmsCRUD.index','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'newFilmRequests.index','method'=>'POST')) !!}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -55,12 +55,12 @@
 
     <hr/>
     <!--For each film request information is stored in the database, display the name and the description-->
-    @foreach ($blogs as $key => $item)
-        <h2 class="text-center"><b>{{ $item->name }}</b></h2>
-        <p><b>Description: </b>{{ $item->description }}</p>
+    @foreach ($currentFilmRequests as $key => $filmRequests)
+        <h2 class="text-center"><b>{{ $filmRequests->name }}</b></h2>
+        <p><b>Description: </b>{{ $filmRequests->description }}</p>
         <hr/>
     @endforeach
 <div class="text-center">
-    {!! $blogs->render() !!}
+    {!! $currentFilmRequests->render() !!}
 </div>
 @endsection
