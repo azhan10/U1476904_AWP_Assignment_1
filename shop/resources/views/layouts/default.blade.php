@@ -32,7 +32,7 @@
  <script type="text/javascript">
     function logout(){
          $(document).ready(function(){
-                window.location.replace("FilmCRUD");
+                window.location.replace("currentFilms");
             });
     }
 </script>
@@ -44,10 +44,9 @@
 
 </div>
 
- 
+
 
 
 </body>
 
 </html>
-

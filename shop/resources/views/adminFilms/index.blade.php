@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-xs-6 text-left">
           <!--This buttons logs the user out-->
-            <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
+            <a class="btn btn-danger" href="{{ route('currentFilms.index') }}">Log Out</a>
         </div>
         <div class="col-xs-6 text-right">
           <!--This buttons directs the administrator to the create interface-->

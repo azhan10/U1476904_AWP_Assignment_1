@@ -18,7 +18,7 @@
         <!--This buttons returns users back to the index interface-->
         <a class="btn btn-info" href="{{ route('adminFilms.index') }}">Home</a>
         <!--This buttons logs the user out-->
-        <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
+        <a class="btn btn-danger" href="{{ route('currentFilms.index') }}">Log Out</a>
     </div>
     <div class="col-xs-6 text-right">
         <h2 class="text-center">Current Rental Records</h2>

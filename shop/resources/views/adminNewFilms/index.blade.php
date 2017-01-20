@@ -9,7 +9,7 @@
 <!--There are many buttons applied here which perform different events-->
 <div class="text-center">
   <!--This buttons logs the user out-->
-    <input onclick="logout()" class="btn btn-danger" type="button" value="Log Out"/>
+    <a class="btn btn-danger" href="{{ route('currentFilms.index') }}">Log Out</a>
     <!--This buttons directs the user to the administrator film index interface-->
     <a class="btn btn-primary" href="{{ route('adminFilms.index') }}">Back</a>
     <!--This buttons directs the user to the film index interface-->
